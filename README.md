@@ -91,3 +91,80 @@ Os verbos HTTP, também conhecidos como métodos HTTP, são comandos que indicam
 7. OPTIONS: É usado para obter informações sobre os métodos HTTP que o servidor suporta para um recurso específico. Isso é útil para descobrir quais ações são permitidas para um determinado recurso.
 8. TRACE: É usado para obter um loop-back da requisição, permitindo que o cliente veja o que está sendo recebido pelo servidor. É mais usado para fins de depuração e geralmente não é habilitado em produção.
 
+## Niveis de Maturidade do REST
+
+Os níveis de maturidade do REST são um modelo para avaliar o quão bem uma API REST implementa os princípios do REST. O modelo foi desenvolvido por Leonard Richardson, e é baseado em quatro níveis de maturidade:
+
+![Niveis de Maturidade do REST](/assets/niveis.png)
+
+- Nivel 0 (The Swamp of POX):
+  - Todas as informações são salvas em um único endpoint;
+  - Usa apenas os verbos GET e POST;
+  - Essa API não é considerada REST.
+  
+- Nivel 1 (Resources):
+  - Uma URL é criada para cada recurso que será consumido;
+  - Para representar cada recurso fazemos uso de substantivos no plural.
+
+- Nivel 2 (HTTP Verbs):
+  - Se encarrega de garantir que os [verbos HTTP](#verbos-http) sejam usados de forma correta;
+  - Leva em consideração o retorno correto dos [status code](#http-status-code) de cada endpoint após cada operação.
+
+- Nivel 3 (Hypermedia Controls):
+  - Referido pela sigla [HATEOS](#hateos) (Hypertext As The Engine Of Application State);
+  - Fornece aos seus clientes links que indicarão como poderá ser feita a navegação entre seus recursos;
+  - Quem for consumir a API precisará saber apenas a rota principal e a resposta dessa requisição terá todas as demais rotas possíveis.
+ 
+## HATEOS
+
+HATEOAS é um acrônimo para Hypermedia as the Engine of Application State. É uma restrição do estilo de arquitetura REST que enfatiza a utilização de hipermídia para dar aos clientes a capacidade de navegar pelo estado da aplicação sem depender de conhecimento específico da aplicação.
+
+Em uma API REST, os recursos são representados como objetos JSON ou XML. Esses objetos podem conter links para outros recursos, que podem ser acessados ​​realizando novas solicitações HTTP. Os clientes podem usar esses links para navegar pela API sem precisar saber nada sobre a estrutura da API ou o nome dos recursos.
+
+HATEOAS é uma abordagem poderosa para o desenvolvimento de APIs REST. Ele torna as APIs mais flexíveis, escaláveis e fáceis de usar. Também torna as APIs mais tolerantes a mudanças, pois os clientes não precisam ser atualizados quando a estrutura da API muda.
+
+Aqui estão alguns benefícios de usar HATEOAS:
+
+  - **Flexibilidade:** Permite que os clientes naveguem pela API de forma independente, sem depender de conhecimento específico da API. Isso torna as APIs mais flexíveis e tolerantes a mudanças.
+  - **Escalabilidade:** Permite que os clientes naveguem pela API sem precisar armazenar nenhuma informação no estado local. Isso torna as APIs mais escaláveis, pois podem lidar com mais clientes sem exigir mais recursos de hardware.
+  - **Facilidade de uso:** Torna as APIs mais fáceis de usar, pois os clientes não precisam saber nada sobre a estrutura da API ou o nome dos recursos. Isso torna as APIs mais acessíveis a um público mais amplo.
+  - **Tolerância a mudanças:** Torna as APIs mais tolerantes a mudanças, pois os clientes não precisam ser atualizados quando a estrutura da API muda. Isso torna as APIs mais duradouras e fáceis de manter.
+
+Se você estiver desenvolvendo uma API REST, eu recomendo usar HATEOAS. É uma abordagem poderosa que pode tornar suas APIs mais flexíveis, escaláveis, fáceis de usar e tolerantes a mudanças.
+
+## Documentação Swagger
+
+O Swagger é um software criado em 2011, que possui um conjunto de ferramentas construídas em torno de uma especificação chamada OpenAPI, que ajuda a projetar, construir, documentar e consumir APIs.
+
+Aqui estão alguns benefícios de usar a documentação Swagger:
+
+  - Melhor documentação: a documentação Swagger fornece uma documentação abrangente e precisa da API. Isso facilita para os desenvolvedores entenderem como usar a API.
+  - Geração de código: a documentação Swagger pode ser usada para gerar código cliente para diferentes linguagens e plataformas. Isso facilita para os desenvolvedores começarem a usar a API rapidamente.
+  - Teste: a documentação Swagger pode ser usada para testar a API. Isso facilita para os desenvolvedores garantir que a API esteja funcionando conforme o esperado.
+  - Automação de implantação: a documentação Swagger pode ser usada para automatizar o processo de implantação da API. Isso facilita para os desenvolvedores implantar a API em um ambiente de produção.
+
+## Autenticação
+
+A autenticação é o processo de verificar a identidade de um usuário. Em APIs REST, a autenticação é usada para verificar a identidade de um usuário antes de permitir que ele acesse recursos.
+
+Existem vários métodos de autenticação que podem ser usados em APIs REST, incluindo:
+
+  - Autenticação de base de dados: este é o método de autenticação mais comum. Ele envolve o armazenamento de nomes de usuário e senhas em uma base de dados. Quando um usuário faz login, o nome de usuário e a senha são verificados na base de dados.
+  - Autenticação de token: este método de autenticação envolve o uso de tokens para representar a identidade de um usuário. Os tokens são gerados pelo servidor e são enviados para o cliente. O cliente usa o token para fazer solicitações ao servidor.
+  - Autenticação de OAuth: este método de autenticação é um padrão aberto para a autorização de aplicativos de terceiros. Ele envolve o uso de um servidor de autorização para autorizar aplicativos de terceiros a acessar recursos em nome de um usuário.
+
+O método de autenticação mais adequado para uma API REST depende das necessidades específicas da API. Se a API precisa proteger recursos confidenciais, é importante usar um método de autenticação seguro, como a autenticação de base de dados ou a autenticação de token.
+
+Aqui estão algumas dicas para autenticar APIs REST:
+
+  - Use um método de autenticação seguro.
+  - Armazene senhas com segurança.
+  - Use tokens expirados.
+  - Monitore suas APIs para atividades suspeitas.
+
+## Versionamento
+
+O versionamento é o processo de atribuir versões aos recursos de uma API REST. Isso permite que os clientes usem diferentes versões da API ao mesmo tempo, sem se preocupar com a incompatibilidade.
+
+  - Versionamento de recurso: este método envolve o uso de diferentes URIs para diferentes versões da API. Por exemplo, a versão 1 da API pode estar em `/api/v1`, enquanto a versão 2 da API pode estar em `/api/v2`.
+  - Versionamento de cabeçalho: este método envolve o uso de um cabeçalho HTTP para especificar a versão da API que o cliente está usando. Por exemplo, o cabeçalho `X-API-Version` pode ser usado para especificar a versão da API que o cliente está usando.
